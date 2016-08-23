@@ -22,7 +22,7 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-// Auto-generated OpenVX 1.0.1 C++11 RAII classes based on RAIIGen V0.2.4 (https://github.com/Unarmed1000)
+// Auto-generated OpenVX 1.0.1 C++11 RAII classes based on RAIIGen V0.2.5 (https://github.com/Unarmed1000)
 
 #include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
@@ -78,10 +78,11 @@ namespace RapidOpenVX
       Reset(context);
     }
     
-    Context()
+      //! @brief Create the requested resource
+    Context(const ResetMode resetMode)
       : Context()
     {
-      Reset();
+      Reset(resetMode);
     }
     
     ~Context()
@@ -119,14 +120,16 @@ namespace RapidOpenVX
       m_context = context;
     }
     
-    void Reset()
+    //! @brief Destroys any owned resources and then creates the requested one
+    void Reset(const ResetMode resetMode)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
-
       // Free any currently allocated resource
       if (IsValid())
         Reset();
 
+      if( resetMode == ResetMode::Destroy )
+        return;
+        
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_context context = vxCreateContext();
       Util::Check(context, "vxCreateContext", __FILE__, __NAME__);

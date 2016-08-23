@@ -22,7 +22,7 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-// Auto-generated OpenVX 1.0.1 C++11 RAII classes based on RAIIGen V0.2.4 (https://github.com/Unarmed1000)
+// Auto-generated OpenVX 1.0.1 C++11 RAII classes based on RAIIGen V0.2.5 (https://github.com/Unarmed1000)
 
 #include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
@@ -119,6 +119,7 @@ namespace RapidOpenVX
       m_lut = lut;
     }
     
+    //! @brief Destroys any owned resources and then creates the requested one
     void Reset(const vx_context context, const vx_enum data_type, const vx_size count)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
