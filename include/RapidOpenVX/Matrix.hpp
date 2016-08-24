@@ -77,10 +77,10 @@ namespace RapidOpenVX
       Reset(matrix);
     }
     
-    Matrix(const vx_context c, const vx_enum data_type, const vx_size columns, const vx_size rows)
+    Matrix(const vx_context c, const vx_enum dataType, const vx_size columns, const vx_size rows)
       : Matrix()
     {
-      Reset(c, data_type, columns, rows);
+      Reset(c, dataType, columns, rows);
     }
     
     ~Matrix()
@@ -119,7 +119,7 @@ namespace RapidOpenVX
     }
     
     //! @brief Destroys any owned resources and then creates the requested one
-    void Reset(const vx_context c, const vx_enum data_type, const vx_size columns, const vx_size rows)
+    void Reset(const vx_context c, const vx_enum dataType, const vx_size columns, const vx_size rows)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
 
@@ -128,7 +128,7 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_matrix matrix = vxCreateMatrix(c, data_type, columns, rows);
+      const vx_matrix matrix = vxCreateMatrix(c, dataType, columns, rows);
       Util::Check(matrix, "vxCreateMatrix", __FILE__, __NAME__);
 
       // Everything is ready, so assign the members

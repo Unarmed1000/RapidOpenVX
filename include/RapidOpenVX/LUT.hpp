@@ -77,10 +77,10 @@ namespace RapidOpenVX
       Reset(lut);
     }
     
-    LUT(const vx_context context, const vx_enum data_type, const vx_size count)
+    LUT(const vx_context context, const vx_enum dataType, const vx_size count)
       : LUT()
     {
-      Reset(context, data_type, count);
+      Reset(context, dataType, count);
     }
     
     ~LUT()
@@ -119,7 +119,7 @@ namespace RapidOpenVX
     }
     
     //! @brief Destroys any owned resources and then creates the requested one
-    void Reset(const vx_context context, const vx_enum data_type, const vx_size count)
+    void Reset(const vx_context context, const vx_enum dataType, const vx_size count)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
 
@@ -128,7 +128,7 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_lut lut = vxCreateLUT(context, data_type, count);
+      const vx_lut lut = vxCreateLUT(context, dataType, count);
       Util::Check(lut, "vxCreateLUT", __FILE__, __NAME__);
 
       // Everything is ready, so assign the members

@@ -77,10 +77,10 @@ namespace RapidOpenVX
       Reset(threshold);
     }
     
-    Threshold(const vx_context c, const vx_enum thresh_type, const vx_enum data_type)
+    Threshold(const vx_context c, const vx_enum threshType, const vx_enum dataType)
       : Threshold()
     {
-      Reset(c, thresh_type, data_type);
+      Reset(c, threshType, dataType);
     }
     
     ~Threshold()
@@ -119,7 +119,7 @@ namespace RapidOpenVX
     }
     
     //! @brief Destroys any owned resources and then creates the requested one
-    void Reset(const vx_context c, const vx_enum thresh_type, const vx_enum data_type)
+    void Reset(const vx_context c, const vx_enum threshType, const vx_enum dataType)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
 
@@ -128,7 +128,7 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_threshold threshold = vxCreateThreshold(c, thresh_type, data_type);
+      const vx_threshold threshold = vxCreateThreshold(c, threshType, dataType);
       Util::Check(threshold, "vxCreateThreshold", __FILE__, __NAME__);
 
       // Everything is ready, so assign the members

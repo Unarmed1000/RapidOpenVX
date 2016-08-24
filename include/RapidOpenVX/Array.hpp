@@ -77,10 +77,10 @@ namespace RapidOpenVX
       Reset(array);
     }
     
-    Array(const vx_context context, const vx_enum item_type, const vx_size capacity)
+    Array(const vx_context context, const vx_enum itemType, const vx_size capacity)
       : Array()
     {
-      Reset(context, item_type, capacity);
+      Reset(context, itemType, capacity);
     }
     
     ~Array()
@@ -119,7 +119,7 @@ namespace RapidOpenVX
     }
     
     //! @brief Destroys any owned resources and then creates the requested one
-    void Reset(const vx_context context, const vx_enum item_type, const vx_size capacity)
+    void Reset(const vx_context context, const vx_enum itemType, const vx_size capacity)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
 
@@ -128,7 +128,7 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_array array = vxCreateArray(context, item_type, capacity);
+      const vx_array array = vxCreateArray(context, itemType, capacity);
       Util::Check(array, "vxCreateArray", __FILE__, __NAME__);
 
       // Everything is ready, so assign the members

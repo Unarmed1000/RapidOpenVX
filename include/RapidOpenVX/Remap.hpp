@@ -77,10 +77,10 @@ namespace RapidOpenVX
       Reset(remap);
     }
     
-    Remap(const vx_context context, const vx_uint32 src_width, const vx_uint32 src_height, const vx_uint32 dst_width, const vx_uint32 dst_height)
+    Remap(const vx_context context, const vx_uint32 srcWidth, const vx_uint32 srcHeight, const vx_uint32 dstWidth, const vx_uint32 dstHeight)
       : Remap()
     {
-      Reset(context, src_width, src_height, dst_width, dst_height);
+      Reset(context, srcWidth, srcHeight, dstWidth, dstHeight);
     }
     
     ~Remap()
@@ -119,7 +119,7 @@ namespace RapidOpenVX
     }
     
     //! @brief Destroys any owned resources and then creates the requested one
-    void Reset(const vx_context context, const vx_uint32 src_width, const vx_uint32 src_height, const vx_uint32 dst_width, const vx_uint32 dst_height)
+    void Reset(const vx_context context, const vx_uint32 srcWidth, const vx_uint32 srcHeight, const vx_uint32 dstWidth, const vx_uint32 dstHeight)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
 
@@ -128,7 +128,7 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_remap remap = vxCreateRemap(context, src_width, src_height, dst_width, dst_height);
+      const vx_remap remap = vxCreateRemap(context, srcWidth, srcHeight, dstWidth, dstHeight);
       Util::Check(remap, "vxCreateRemap", __FILE__, __NAME__);
 
       // Everything is ready, so assign the members

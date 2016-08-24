@@ -77,10 +77,10 @@ namespace RapidOpenVX
       Reset(scalar);
     }
     
-    Scalar(const vx_context context, const vx_enum data_type, const void * ptr)
+    Scalar(const vx_context context, const vx_enum dataType, const void * ptr)
       : Scalar()
     {
-      Reset(context, data_type, ptr);
+      Reset(context, dataType, ptr);
     }
     
     ~Scalar()
@@ -119,7 +119,7 @@ namespace RapidOpenVX
     }
     
     //! @brief Destroys any owned resources and then creates the requested one
-    void Reset(const vx_context context, const vx_enum data_type, const void * ptr)
+    void Reset(const vx_context context, const vx_enum dataType, const void * ptr)
     {
       // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
 
@@ -128,7 +128,7 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_scalar scalar = vxCreateScalar(context, data_type, ptr);
+      const vx_scalar scalar = vxCreateScalar(context, dataType, ptr);
       Util::Check(scalar, "vxCreateScalar", __FILE__, __NAME__);
 
       // Everything is ready, so assign the members
