@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_distribution = other.m_distribution;
 
         // Remove the data from other
-        other.m_distribution = Values::INVALID_DISTRIBUTION;
+        other.m_distribution = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_distribution(other.m_distribution)
     {
       // Remove the data from other
-      other.m_distribution = Values::INVALID_DISTRIBUTION;
+      other.m_distribution = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Distribution()
-      : m_distribution(Values::INVALID_DISTRIBUTION)
+      : m_distribution(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_distribution Release()
     {
       const auto resource = m_distribution;
-      m_distribution = Values::INVALID_DISTRIBUTION;
+      m_distribution = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_distribution != Values::INVALID_DISTRIBUTION);
+      assert(m_distribution != nullptr);
 
       vxReleaseDistribution(&m_distribution);
-      m_distribution = Values::INVALID_DISTRIBUTION;
+      m_distribution = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Distribution (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_distribution != Values::INVALID_DISTRIBUTION;
+      return m_distribution != nullptr;
     }
   };
 }

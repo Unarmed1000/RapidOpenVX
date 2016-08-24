@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_array = other.m_array;
 
         // Remove the data from other
-        other.m_array = Values::INVALID_ARRAY;
+        other.m_array = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_array(other.m_array)
     {
       // Remove the data from other
-      other.m_array = Values::INVALID_ARRAY;
+      other.m_array = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Array()
-      : m_array(Values::INVALID_ARRAY)
+      : m_array(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_array Release()
     {
       const auto resource = m_array;
-      m_array = Values::INVALID_ARRAY;
+      m_array = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_array != Values::INVALID_ARRAY);
+      assert(m_array != nullptr);
 
       vxReleaseArray(&m_array);
-      m_array = Values::INVALID_ARRAY;
+      m_array = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Array (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_array != Values::INVALID_ARRAY;
+      return m_array != nullptr;
     }
   };
 }

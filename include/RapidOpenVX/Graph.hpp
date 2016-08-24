@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_graph = other.m_graph;
 
         // Remove the data from other
-        other.m_graph = Values::INVALID_GRAPH;
+        other.m_graph = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_graph(other.m_graph)
     {
       // Remove the data from other
-      other.m_graph = Values::INVALID_GRAPH;
+      other.m_graph = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Graph()
-      : m_graph(Values::INVALID_GRAPH)
+      : m_graph(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_graph Release()
     {
       const auto resource = m_graph;
-      m_graph = Values::INVALID_GRAPH;
+      m_graph = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_graph != Values::INVALID_GRAPH);
+      assert(m_graph != nullptr);
 
       vxReleaseGraph(&m_graph);
-      m_graph = Values::INVALID_GRAPH;
+      m_graph = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Graph (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_graph != Values::INVALID_GRAPH;
+      return m_graph != nullptr;
     }
   };
 }

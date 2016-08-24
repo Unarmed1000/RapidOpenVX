@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_convolution = other.m_convolution;
 
         // Remove the data from other
-        other.m_convolution = Values::INVALID_CONVOLUTION;
+        other.m_convolution = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_convolution(other.m_convolution)
     {
       // Remove the data from other
-      other.m_convolution = Values::INVALID_CONVOLUTION;
+      other.m_convolution = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Convolution()
-      : m_convolution(Values::INVALID_CONVOLUTION)
+      : m_convolution(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_convolution Release()
     {
       const auto resource = m_convolution;
-      m_convolution = Values::INVALID_CONVOLUTION;
+      m_convolution = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_convolution != Values::INVALID_CONVOLUTION);
+      assert(m_convolution != nullptr);
 
       vxReleaseConvolution(&m_convolution);
-      m_convolution = Values::INVALID_CONVOLUTION;
+      m_convolution = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Convolution (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_convolution != Values::INVALID_CONVOLUTION;
+      return m_convolution != nullptr;
     }
   };
 }

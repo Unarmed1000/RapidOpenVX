@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_lut = other.m_lut;
 
         // Remove the data from other
-        other.m_lut = Values::INVALID_LUT;
+        other.m_lut = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_lut(other.m_lut)
     {
       // Remove the data from other
-      other.m_lut = Values::INVALID_LUT;
+      other.m_lut = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     LUT()
-      : m_lut(Values::INVALID_LUT)
+      : m_lut(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_lut Release()
     {
       const auto resource = m_lut;
-      m_lut = Values::INVALID_LUT;
+      m_lut = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_lut != Values::INVALID_LUT);
+      assert(m_lut != nullptr);
 
       vxReleaseLUT(&m_lut);
-      m_lut = Values::INVALID_LUT;
+      m_lut = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the LUT (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_lut != Values::INVALID_LUT;
+      return m_lut != nullptr;
     }
   };
 }

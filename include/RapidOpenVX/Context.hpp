@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_context = other.m_context;
 
         // Remove the data from other
-        other.m_context = Values::INVALID_CONTEXT;
+        other.m_context = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_context(other.m_context)
     {
       // Remove the data from other
-      other.m_context = Values::INVALID_CONTEXT;
+      other.m_context = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Context()
-      : m_context(Values::INVALID_CONTEXT)
+      : m_context(nullptr)
     {
     }
 
@@ -94,7 +93,7 @@ namespace RapidOpenVX
     vx_context Release()
     {
       const auto resource = m_context;
-      m_context = Values::INVALID_CONTEXT;
+      m_context = nullptr;
       return resource;
     }
 
@@ -104,10 +103,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_context != Values::INVALID_CONTEXT);
+      assert(m_context != nullptr);
 
       vxReleaseContext(&m_context);
-      m_context = Values::INVALID_CONTEXT;
+      m_context = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Context (this object becomes responsible for releasing it)
@@ -147,7 +146,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_context != Values::INVALID_CONTEXT;
+      return m_context != nullptr;
     }
   };
 }

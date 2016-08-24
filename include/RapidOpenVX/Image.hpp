@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_image = other.m_image;
 
         // Remove the data from other
-        other.m_image = Values::INVALID_IMAGE;
+        other.m_image = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_image(other.m_image)
     {
       // Remove the data from other
-      other.m_image = Values::INVALID_IMAGE;
+      other.m_image = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Image()
-      : m_image(Values::INVALID_IMAGE)
+      : m_image(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_image Release()
     {
       const auto resource = m_image;
-      m_image = Values::INVALID_IMAGE;
+      m_image = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_image != Values::INVALID_IMAGE);
+      assert(m_image != nullptr);
 
       vxReleaseImage(&m_image);
-      m_image = Values::INVALID_IMAGE;
+      m_image = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Image (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_image != Values::INVALID_IMAGE;
+      return m_image != nullptr;
     }
   };
 }

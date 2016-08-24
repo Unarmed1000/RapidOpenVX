@@ -24,7 +24,6 @@
 
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
-#include <RapidOpenVX/Values.hpp>
 #include <RapidOpenVX/Util.hpp>
 #include <VX/vx.h>
 #include <cassert>
@@ -52,7 +51,7 @@ namespace RapidOpenVX
         m_remap = other.m_remap;
 
         // Remove the data from other
-        other.m_remap = Values::INVALID_REMAP;
+        other.m_remap = nullptr;
       }
       return *this;
     }
@@ -62,12 +61,12 @@ namespace RapidOpenVX
       : m_remap(other.m_remap)
     {
       // Remove the data from other
-      other.m_remap = Values::INVALID_REMAP;
+      other.m_remap = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
     Remap()
-      : m_remap(Values::INVALID_REMAP)
+      : m_remap(nullptr)
     {
     }
 
@@ -93,7 +92,7 @@ namespace RapidOpenVX
     vx_remap Release()
     {
       const auto resource = m_remap;
-      m_remap = Values::INVALID_REMAP;
+      m_remap = nullptr;
       return resource;
     }
 
@@ -103,10 +102,10 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_remap != Values::INVALID_REMAP);
+      assert(m_remap != nullptr);
 
       vxReleaseRemap(&m_remap);
-      m_remap = Values::INVALID_REMAP;
+      m_remap = nullptr;
     }
 
     //! @brief Destroys any owned resources and assume control of the Remap (this object becomes responsible for releasing it)
@@ -145,7 +144,7 @@ namespace RapidOpenVX
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_remap != Values::INVALID_REMAP;
+      return m_remap != nullptr;
     }
   };
 }
