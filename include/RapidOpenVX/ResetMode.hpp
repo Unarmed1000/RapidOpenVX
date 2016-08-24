@@ -22,7 +22,7 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-// Auto-generated OpenVX 1.0.1 C++11 RAII classes based on RAIIGen V0.2.5 (https://github.com/Unarmed1000)
+// Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
 namespace RapidOpenVX
 {
