@@ -1,5 +1,5 @@
-#ifndef RAPIDOPENVX_EXCEPTIONS_HPP
-#define RAPIDOPENVX_EXCEPTIONS_HPP
+#ifndef RAPIDOPENVX_DEBUGSTRINGS_HPP
+#define RAPIDOPENVX_DEBUGSTRINGS_HPP
 //***************************************************************************************************************************************************
 //* BSD 3-Clause License
 //*
@@ -22,82 +22,18 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-#include <stdexcept>
-#include <string>
 #include <VX/vx.h>
 
 namespace RapidOpenVX
 {
-  class OpenVXException : public std::runtime_error
+  //! Extend the debug namespace with 'convenience' methods.
+  //! This file adds conversion methods that helps transform various things to a nice string representation.
+  //! WARNING: this requires you to compile the CPP file.
+  namespace Debug
   {
-    std::string m_fileName;
-    int m_lineNumber;
-  public:
-    explicit OpenVXException(const std::string& whatArg)
-      : std::runtime_error(whatArg)
-      , m_fileName()
-      , m_lineNumber(0)
-    {
-    }
-
-    explicit OpenVXException(const std::string& whatArg, const std::string& fileName, const int lineNumber)
-      : std::runtime_error(whatArg)
-      , m_fileName(fileName)
-      , m_lineNumber(lineNumber)
-    {
-    }
-
-
-    std::string GetFileName() const
-    {
-      return m_fileName;
-    }
-
-
-    int GetLineNumber() const
-    {
-      return m_lineNumber;
-    }
-  };
-
-
-  class OpenVXCreateException : public OpenVXException
-  {
-  public:
-    explicit OpenVXCreateException(const std::string& whatArg)
-      : OpenVXException(whatArg)
-    {
-    }
-
-    explicit OpenVXCreateException(const std::string& whatArg, const std::string& fileName, const int lineNumber)
-      : OpenVXException(whatArg, fileName, lineNumber)
-    {
-    }
-  };
-
-
-  class OpenVXStatusErrorException : public OpenVXException
-  {
-    vx_status m_status;
-  public:
-
-    explicit OpenVXStatusErrorException(const std::string& whatArg, const vx_status status)
-      : OpenVXException(whatArg)
-      , m_status(status)
-    {
-    }
-
-    explicit OpenVXStatusErrorException(const std::string& whatArg, const vx_status status, const std::string& fileName, const int lineNumber)
-      : OpenVXException(whatArg, fileName, lineNumber)
-      , m_status(status)
-    {
-    }
-
-    vx_status GetStatus() const
-    {
-      return m_status;
-    }
-  };
+    //! @brief Convert the error code to a string
+    extern const char* ErrorCodeToString(const vx_status errorCode);
+  }
 }
 
 #endif
