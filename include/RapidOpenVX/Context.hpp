@@ -25,6 +25,7 @@
 // Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
 
 #include <RapidOpenVX/Util.hpp>
+#include <RapidOpenVX/ResetMode.hpp>
 #include <VX/vx.h>
 #include <cassert>
 
@@ -71,13 +72,13 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Context (this object becomes responsible for releasing it)
-    explicit Context(const vx_context context);
+    explicit Context(const vx_context context)
       : Context()
     {
       Reset(context);
     }
     
-      //! @brief Create the requested resource
+    //! @brief Create the requested resource
     Context(const ResetMode resetMode)
       : Context()
     {
@@ -131,7 +132,7 @@ namespace RapidOpenVX
         
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_context context = vxCreateContext();
-      Util::Check(context, "vxCreateContext", __FILE__, __NAME__);
+      Util::Check(context, "vxCreateContext", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_context = context;

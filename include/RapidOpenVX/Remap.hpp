@@ -71,7 +71,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Remap (this object becomes responsible for releasing it)
-    explicit Remap(const vx_remap remap);
+    explicit Remap(const vx_remap remap)
       : Remap()
     {
       Reset(remap);
@@ -129,7 +129,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_remap remap = vxCreateRemap(context, srcWidth, srcHeight, dstWidth, dstHeight);
-      Util::Check(remap, "vxCreateRemap", __FILE__, __NAME__);
+      Util::Check(remap, "vxCreateRemap", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_remap = remap;

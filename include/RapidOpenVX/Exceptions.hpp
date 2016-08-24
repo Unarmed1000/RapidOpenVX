@@ -33,13 +33,6 @@ namespace RapidOpenVX
     std::string m_fileName;
     int m_lineNumber;
   public:
-    explicit OpenVXException()
-      : std::runtime_error()
-      , m_fileName()
-      , m_lineNumber(0)    
-    {
-    }
-  
     explicit OpenVXException(const std::string& whatArg)
       : std::runtime_error(whatArg)
       , m_fileName()
@@ -71,17 +64,12 @@ namespace RapidOpenVX
   class OpenVXCreateException : public OpenVXException
   {
   public:
-    explicit RapidOpenVXCreateException()
-      : OpenVXException()
-    {
-    }
-  
     explicit OpenVXCreateException(const std::string& whatArg)
       : OpenVXException(whatArg)
     {
     }
 
-    explicit RapidOpenVXCreateException(const std::string& whatArg, const std::string& fileName, const int lineNumber)
+    explicit OpenVXCreateException(const std::string& whatArg, const std::string& fileName, const int lineNumber)
       : OpenVXException(whatArg, fileName, lineNumber)
     {
     }
@@ -92,12 +80,7 @@ namespace RapidOpenVX
   {
     vx_status m_status;
   public:
-    explicit OpenVXStatusErrorException()
-      : OpenVXException()
-      , m_status(VX_SUCCESS)
-    {
-    }
-  
+
     explicit OpenVXStatusErrorException(const std::string& whatArg, const vx_status status)
       : OpenVXException(whatArg)
       , m_status(status)

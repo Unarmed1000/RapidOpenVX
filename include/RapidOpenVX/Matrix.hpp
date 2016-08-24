@@ -71,7 +71,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Matrix (this object becomes responsible for releasing it)
-    explicit Matrix(const vx_matrix matrix);
+    explicit Matrix(const vx_matrix matrix)
       : Matrix()
     {
       Reset(matrix);
@@ -129,7 +129,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_matrix matrix = vxCreateMatrix(c, dataType, columns, rows);
-      Util::Check(matrix, "vxCreateMatrix", __FILE__, __NAME__);
+      Util::Check(matrix, "vxCreateMatrix", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_matrix = matrix;

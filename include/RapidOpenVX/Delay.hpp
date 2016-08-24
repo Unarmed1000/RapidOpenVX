@@ -71,7 +71,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Delay (this object becomes responsible for releasing it)
-    explicit Delay(const vx_delay delay);
+    explicit Delay(const vx_delay delay)
       : Delay()
     {
       Reset(delay);
@@ -129,7 +129,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_delay delay = vxCreateDelay(context, exemplar, slots);
-      Util::Check(delay, "vxCreateDelay", __FILE__, __NAME__);
+      Util::Check(delay, "vxCreateDelay", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_delay = delay;

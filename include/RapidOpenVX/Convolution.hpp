@@ -71,7 +71,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Convolution (this object becomes responsible for releasing it)
-    explicit Convolution(const vx_convolution convolution);
+    explicit Convolution(const vx_convolution convolution)
       : Convolution()
     {
       Reset(convolution);
@@ -129,7 +129,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_convolution convolution = vxCreateConvolution(context, columns, rows);
-      Util::Check(convolution, "vxCreateConvolution", __FILE__, __NAME__);
+      Util::Check(convolution, "vxCreateConvolution", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_convolution = convolution;

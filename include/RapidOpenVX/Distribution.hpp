@@ -71,7 +71,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Distribution (this object becomes responsible for releasing it)
-    explicit Distribution(const vx_distribution distribution);
+    explicit Distribution(const vx_distribution distribution)
       : Distribution()
     {
       Reset(distribution);
@@ -129,7 +129,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_distribution distribution = vxCreateDistribution(context, numBins, offset, range);
-      Util::Check(distribution, "vxCreateDistribution", __FILE__, __NAME__);
+      Util::Check(distribution, "vxCreateDistribution", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_distribution = distribution;

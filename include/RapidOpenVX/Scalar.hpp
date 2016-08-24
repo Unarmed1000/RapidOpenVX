@@ -71,7 +71,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Assume control of the Scalar (this object becomes responsible for releasing it)
-    explicit Scalar(const vx_scalar scalar);
+    explicit Scalar(const vx_scalar scalar)
       : Scalar()
     {
       Reset(scalar);
@@ -129,7 +129,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_scalar scalar = vxCreateScalar(context, dataType, ptr);
-      Util::Check(scalar, "vxCreateScalar", __FILE__, __NAME__);
+      Util::Check(scalar, "vxCreateScalar", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_scalar = scalar;
