@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Threshold(Threshold&& other)
       : m_threshold(other.m_threshold)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreateThreshold
     void Reset(const vx_context c, const vx_enum threshType, const vx_enum dataType)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())

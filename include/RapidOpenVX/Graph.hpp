@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Graph(Graph&& other)
       : m_graph(other.m_graph)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreateGraph
     void Reset(const vx_context context)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())

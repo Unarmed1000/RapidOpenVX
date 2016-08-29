@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Distribution(Distribution&& other)
       : m_distribution(other.m_distribution)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreateDistribution
     void Reset(const vx_context context, const vx_size numBins, const vx_int32 offset, const vx_uint32 range)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())

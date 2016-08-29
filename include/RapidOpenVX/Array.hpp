@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Array(Array&& other)
       : m_array(other.m_array)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreateArray
     void Reset(const vx_context context, const vx_enum itemType, const vx_size capacity)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())

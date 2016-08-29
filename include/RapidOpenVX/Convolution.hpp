@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Convolution(Convolution&& other)
       : m_convolution(other.m_convolution)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreateConvolution
     void Reset(const vx_context context, const vx_size columns, const vx_size rows)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())

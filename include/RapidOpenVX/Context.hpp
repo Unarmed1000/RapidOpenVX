@@ -58,6 +58,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Context(Context&& other)
       : m_context(other.m_context)
     {

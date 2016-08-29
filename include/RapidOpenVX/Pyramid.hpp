@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Pyramid(Pyramid&& other)
       : m_pyramid(other.m_pyramid)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreatePyramid
     void Reset(const vx_context context, const vx_size levels, const vx_float32 scale, const vx_uint32 width, const vx_uint32 height, const vx_df_image format)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())

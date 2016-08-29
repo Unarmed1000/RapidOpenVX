@@ -57,6 +57,7 @@ namespace RapidOpenVX
     }
 
     //! @brief Move constructor
+    //! Transfer ownership from other to this
     Remap(Remap&& other)
       : m_remap(other.m_remap)
     {
@@ -124,7 +125,9 @@ namespace RapidOpenVX
     //! @note  Function: vxCreateRemap
     void Reset(const vx_context context, const vx_uint32 srcWidth, const vx_uint32 srcHeight, const vx_uint32 dstWidth, const vx_uint32 dstHeight)
     {
-      // We do the check here to be user friendly, if it becomes a performance issue switch it to a assert.
+#ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
+#else
+#endif
 
       // Free any currently allocated resource
       if (IsValid())
