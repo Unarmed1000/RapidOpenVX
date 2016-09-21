@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_image;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_image* GetPointer() const
+    {
+      return &m_image;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {

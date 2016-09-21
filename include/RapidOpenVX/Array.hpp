@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_array;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_array* GetPointer() const
+    {
+      return &m_array;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {

@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_lut;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_lut* GetPointer() const
+    {
+      return &m_lut;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {

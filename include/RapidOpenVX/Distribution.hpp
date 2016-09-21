@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_distribution;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_distribution* GetPointer() const
+    {
+      return &m_distribution;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {

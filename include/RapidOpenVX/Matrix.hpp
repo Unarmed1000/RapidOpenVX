@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_matrix;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_matrix* GetPointer() const
+    {
+      return &m_matrix;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {

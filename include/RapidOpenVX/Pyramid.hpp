@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_pyramid;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_pyramid* GetPointer() const
+    {
+      return &m_pyramid;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {

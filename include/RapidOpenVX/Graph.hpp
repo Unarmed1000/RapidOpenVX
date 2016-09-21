@@ -147,6 +147,12 @@ namespace RapidOpenVX
       return m_graph;
     }
 
+    //! @brief Get a pointer to the associated resource handle
+    const vx_graph* GetPointer() const
+    {
+      return &m_graph;
+    }
+
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
