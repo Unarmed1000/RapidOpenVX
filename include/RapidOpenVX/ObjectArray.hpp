@@ -1,5 +1,6 @@
-#ifndef RAPIDOPENVX_SCALAR_HPP
-#define RAPIDOPENVX_SCALAR_HPP
+#ifndef RAPIDOPENVX_OBJECTARRAY_HPP
+#define RAPIDOPENVX_OBJECTARRAY_HPP
+#if VX_VERSION >= VX_VERSION_1_1
 //***************************************************************************************************************************************************
 //* BSD 3-Clause License
 //*
@@ -33,15 +34,15 @@
 namespace RapidOpenVX
 {
   // This object is movable so it can be thought of as behaving in the same was as a unique_ptr and is compatible with std containers
-  class Scalar
+  class ObjectArray
   {
-    vx_scalar m_scalar;
+    vx_object_array m_objectArray;
   public:
-    Scalar(const Scalar&) = delete;
-    Scalar& operator=(const Scalar&) = delete;
+    ObjectArray(const ObjectArray&) = delete;
+    ObjectArray& operator=(const ObjectArray&) = delete;
 
     //! @brief Move assignment operator
-    Scalar& operator=(Scalar&& other)
+    ObjectArray& operator=(ObjectArray&& other)
     {
       if (this != &other)
       {
@@ -50,54 +51,54 @@ namespace RapidOpenVX
           Reset();
 
         // Claim ownership here
-        m_scalar = other.m_scalar;
+        m_objectArray = other.m_objectArray;
 
         // Remove the data from other
-        other.m_scalar = nullptr;
+        other.m_objectArray = nullptr;
       }
       return *this;
     }
 
     //! @brief Move constructor
     //! Transfer ownership from other to this
-    Scalar(Scalar&& other)
-      : m_scalar(other.m_scalar)
+    ObjectArray(ObjectArray&& other)
+      : m_objectArray(other.m_objectArray)
     {
       // Remove the data from other
-      other.m_scalar = nullptr;
+      other.m_objectArray = nullptr;
     }
 
     //! @brief Create a 'invalid' instance (use Reset to populate it)
-    Scalar()
-      : m_scalar(nullptr)
+    ObjectArray()
+      : m_objectArray(nullptr)
     {
     }
 
-    //! @brief Assume control of the Scalar (this object becomes responsible for releasing it)
-    explicit Scalar(const vx_scalar scalar)
-      : Scalar()
+    //! @brief Assume control of the ObjectArray (this object becomes responsible for releasing it)
+    explicit ObjectArray(const vx_object_array objectArray)
+      : ObjectArray()
     {
-      Reset(scalar);
+      Reset(objectArray);
     }
 
     //! @brief Create the requested resource
-    //! @note  Function: vxCreateScalar
-    Scalar(const vx_context context, const vx_enum dataType, const void * ptr)
-      : Scalar()
+    //! @note  Function: vxCreateObjectArray
+    ObjectArray(const vx_context context, const vx_reference exemplar, const vx_size count)
+      : ObjectArray()
     {
-      Reset(context, dataType, ptr);
+      Reset(context, exemplar, count);
     }
 
-    ~Scalar()
+    ~ObjectArray()
     {
       Reset();
     }
 
     //! @brief returns the managed handle and releases the ownership.
-    vx_scalar Release() RAPIDOPENVX_FUNC_POSTFIX_WARN_UNUSED_RESULT
+    vx_object_array Release() RAPIDOPENVX_FUNC_POSTFIX_WARN_UNUSED_RESULT
     {
-      const auto resource = m_scalar;
-      m_scalar = nullptr;
+      const auto resource = m_objectArray;
+      m_objectArray = nullptr;
       return resource;
     }
 
@@ -107,25 +108,25 @@ namespace RapidOpenVX
       if (! IsValid())
         return;
 
-      assert(m_scalar != nullptr);
+      assert(m_objectArray != nullptr);
 
-      vxReleaseScalar(&m_scalar);
-      m_scalar = nullptr;
+      vxReleaseObjectArray(&m_objectArray);
+      m_objectArray = nullptr;
     }
 
-    //! @brief Destroys any owned resources and assume control of the Scalar (this object becomes responsible for releasing it)
-    void Reset(const vx_scalar scalar)
+    //! @brief Destroys any owned resources and assume control of the ObjectArray (this object becomes responsible for releasing it)
+    void Reset(const vx_object_array objectArray)
     {
       if (IsValid())
         Reset();
 
 
-      m_scalar = scalar;
+      m_objectArray = objectArray;
     }
 
     //! @brief Destroys any owned resources and then creates the requested one
-    //! @note  Function: vxCreateScalar
-    void Reset(const vx_context context, const vx_enum dataType, const void * ptr)
+    //! @note  Function: vxCreateObjectArray
+    void Reset(const vx_context context, const vx_reference exemplar, const vx_size count)
     {
 #ifndef RAPIDOPENVX_DISABLE_PARAM_VALIDATION
 #else
@@ -136,31 +137,32 @@ namespace RapidOpenVX
         Reset();
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
-      const vx_scalar scalar = vxCreateScalar(context, dataType, ptr);
-      CheckError(scalar, "vxCreateScalar", __FILE__, __LINE__);
+      const vx_object_array objectArray = vxCreateObjectArray(context, exemplar, count);
+      CheckError(objectArray, "vxCreateObjectArray", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
-      m_scalar = scalar;
+      m_objectArray = objectArray;
     }
 
     //! @brief Get the associated resource handle
-    vx_scalar Get() const
+    vx_object_array Get() const
     {
-      return m_scalar;
+      return m_objectArray;
     }
 
     //! @brief Get a pointer to the associated resource handle
-    const vx_scalar* GetPointer() const
+    const vx_object_array* GetPointer() const
     {
-      return &m_scalar;
+      return &m_objectArray;
     }
 
     //! @brief Check if this object contains a valid resource
     inline bool IsValid() const
     {
-      return m_scalar != nullptr;
+      return m_objectArray != nullptr;
     }
   };
 }
 
+#endif
 #endif

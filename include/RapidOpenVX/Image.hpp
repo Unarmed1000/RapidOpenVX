@@ -22,9 +22,11 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-// Auto-generated OpenVX 1.0.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000)
+// Auto-generated OpenVX 1.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000/RAIIGen)
 
-#include <RapidOpenVX/Util.hpp>
+#include <RapidOpenVX/ClaimMode.hpp>
+#include <RapidOpenVX/CheckError.hpp>
+#include <RapidOpenVX/System/Macro.hpp>
 #include <VX/vx.h>
 #include <cassert>
 
@@ -92,7 +94,7 @@ namespace RapidOpenVX
     }
 
     //! @brief returns the managed handle and releases the ownership.
-    vx_image Release()
+    vx_image Release() RAPIDOPENVX_FUNC_POSTFIX_WARN_UNUSED_RESULT
     {
       const auto resource = m_image;
       m_image = nullptr;
@@ -135,7 +137,7 @@ namespace RapidOpenVX
 
       // Since we want to ensure that the resource is left untouched on error we use a local variable as a intermediary
       const vx_image image = vxCreateImage(context, width, height, color);
-      Util::Check(image, "vxCreateImage", __FILE__, __LINE__);
+      CheckError(image, "vxCreateImage", __FILE__, __LINE__);
 
       // Everything is ready, so assign the members
       m_image = image;

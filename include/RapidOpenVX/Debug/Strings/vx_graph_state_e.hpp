@@ -1,9 +1,10 @@
-#ifndef RAPIDOPENVX_DEBUGSTRINGS_HPP
-#define RAPIDOPENVX_DEBUGSTRINGS_HPP
+#ifndef RAPIDOPENVX_DEBUG_STRINGS_VX_GRAPH_STATE_E_HPP
+#define RAPIDOPENVX_DEBUG_STRINGS_VX_GRAPH_STATE_E_HPP
+#if VX_VERSION >= VX_VERSION_1_1
 //***************************************************************************************************************************************************
 //* BSD 3-Clause License
 //*
-//* Copyright (c) 2016, Rene Thrane
+//* Copyright (c) 2017, Rene Thrane
 //* All rights reserved.
 //*
 //* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,18 +23,46 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
+// If you use the functionality in this file its recommended to 'WRAP' it in a hpp/cpp file combo so its only included in one file!
+
+// Auto-generated OpenVX 1.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000/RAIIGen)
+
 #include <VX/vx.h>
 
 namespace RapidOpenVX
 {
-  //! Extend the debug namespace with 'convenience' methods.
-  //! This file adds conversion methods that helps transform various things to a nice string representation.
-  //! WARNING: this requires you to compile the CPP file.
   namespace Debug
   {
-    //! @brief Convert the error code to a string
-    extern const char* ErrorCodeToString(const vx_status errorCode);
+    inline const char* ToString(const vx_graph_state_e& value)
+    {
+      switch(value)
+      {
+#if VX_VERSION >= VX_VERSION_1_1
+      case VX_GRAPH_STATE_UNVERIFIED:
+        return "VX_GRAPH_STATE_UNVERIFIED";
+#endif
+#if VX_VERSION >= VX_VERSION_1_1
+      case VX_GRAPH_STATE_VERIFIED:
+        return "VX_GRAPH_STATE_VERIFIED";
+#endif
+#if VX_VERSION >= VX_VERSION_1_1
+      case VX_GRAPH_STATE_RUNNING:
+        return "VX_GRAPH_STATE_RUNNING";
+#endif
+#if VX_VERSION >= VX_VERSION_1_1
+      case VX_GRAPH_STATE_ABANDONED:
+        return "VX_GRAPH_STATE_ABANDONED";
+#endif
+#if VX_VERSION >= VX_VERSION_1_1
+      case VX_GRAPH_STATE_COMPLETED:
+        return "VX_GRAPH_STATE_COMPLETED";
+#endif
+      default:
+        return "*Unknown*";
+      }
+    };
   }
 }
 
+#endif
 #endif

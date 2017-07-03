@@ -1,9 +1,9 @@
-#ifndef RAPIDOPENVX_CHECK_HPP
-#define RAPIDOPENVX_CHECK_HPP
+#ifndef RAPIDOPENVX_DEBUG_STRINGS_VX_DF_IMAGE_E_HPP
+#define RAPIDOPENVX_DEBUG_STRINGS_VX_DF_IMAGE_E_HPP
 //***************************************************************************************************************************************************
 //* BSD 3-Clause License
 //*
-//* Copyright (c) 2016, Rene Thrane
+//* Copyright (c) 2017, Rene Thrane
 //* All rights reserved.
 //*
 //* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,13 +22,53 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-#include <RapidOpenVX/CheckError.hpp>
+// If you use the functionality in this file its recommended to 'WRAP' it in a hpp/cpp file combo so its only included in one file!
 
-// Define some ease of use macros for logging.
-// Please beware that these are not pulled in by any of the RAII classes, so its 100% up to the user of the library to include it
-// if the functionality is desired.
+// Auto-generated OpenVX 1.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000/RAIIGen)
 
-#define RAPIDOPENVX_CHECK(X)                  RapidOpenVX::CheckError((X), #X, __FILE__, __LINE__)
-#define RAPIDOPENVX_CHECK2(X, mESSAGE)        RapidOpenVX::CheckError((X), (mESSAGE), __FILE__, __LINE__)
+#include <VX/vx.h>
+
+namespace RapidOpenVX
+{
+  namespace Debug
+  {
+    inline const char* ToString(const vx_df_image_e& value)
+    {
+      switch(value)
+      {
+      case VX_DF_IMAGE_VIRT:
+        return "VX_DF_IMAGE_VIRT";
+      case VX_DF_IMAGE_RGB:
+        return "VX_DF_IMAGE_RGB";
+      case VX_DF_IMAGE_RGBX:
+        return "VX_DF_IMAGE_RGBX";
+      case VX_DF_IMAGE_NV12:
+        return "VX_DF_IMAGE_NV12";
+      case VX_DF_IMAGE_NV21:
+        return "VX_DF_IMAGE_NV21";
+      case VX_DF_IMAGE_UYVY:
+        return "VX_DF_IMAGE_UYVY";
+      case VX_DF_IMAGE_YUYV:
+        return "VX_DF_IMAGE_YUYV";
+      case VX_DF_IMAGE_IYUV:
+        return "VX_DF_IMAGE_IYUV";
+      case VX_DF_IMAGE_YUV4:
+        return "VX_DF_IMAGE_YUV4";
+      case VX_DF_IMAGE_U8:
+        return "VX_DF_IMAGE_U8";
+      case VX_DF_IMAGE_U16:
+        return "VX_DF_IMAGE_U16";
+      case VX_DF_IMAGE_S16:
+        return "VX_DF_IMAGE_S16";
+      case VX_DF_IMAGE_U32:
+        return "VX_DF_IMAGE_U32";
+      case VX_DF_IMAGE_S32:
+        return "VX_DF_IMAGE_S32";
+      default:
+        return "*Unknown*";
+      }
+    };
+  }
+}
 
 #endif

@@ -1,7 +1,9 @@
+#ifndef RAPIDOPENVX_DEBUG_STRINGS_VX_STATUS_E_HPP
+#define RAPIDOPENVX_DEBUG_STRINGS_VX_STATUS_E_HPP
 //***************************************************************************************************************************************************
 //* BSD 3-Clause License
 //*
-//* Copyright (c) 2016, Rene Thrane
+//* Copyright (c) 2017, Rene Thrane
 //* All rights reserved.
 //*
 //* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,16 +22,22 @@
 //* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //***************************************************************************************************************************************************
 
-#include <RapidOpenVX/DebugStrings.hpp>
+// If you use the functionality in this file its recommended to 'WRAP' it in a hpp/cpp file combo so its only included in one file!
+
+// Auto-generated OpenVX 1.1 C++11 RAII classes by RAIIGen (https://github.com/Unarmed1000/RAIIGen)
+
+#include <VX/vx.h>
 
 namespace RapidOpenVX
 {
   namespace Debug
   {
-    const char* ErrorCodeToString(const vx_status errorCode)
+    inline const char* ToString(const vx_status_e& value)
     {
-      switch (errorCode)
+      switch(value)
       {
+      case VX_STATUS_MIN:
+        return "VX_STATUS_MIN";
       case VX_ERROR_REFERENCE_NONZERO:
         return "VX_ERROR_REFERENCE_NONZERO";
       case VX_ERROR_MULTIPLE_WRITERS:
@@ -44,6 +52,8 @@ namespace RapidOpenVX
         return "VX_ERROR_INVALID_NODE";
       case VX_ERROR_INVALID_GRAPH:
         return "VX_ERROR_INVALID_GRAPH";
+      case VX_ERROR_INVALID_TYPE:
+        return "VX_ERROR_INVALID_TYPE";
       case VX_ERROR_INVALID_VALUE:
         return "VX_ERROR_INVALID_VALUE";
       case VX_ERROR_INVALID_DIMENSION:
@@ -79,9 +89,10 @@ namespace RapidOpenVX
       case VX_SUCCESS:
         return "VX_SUCCESS";
       default:
-        return "Unknown";
+        return "*Unknown*";
       }
-    }
-
+    };
   }
 }
+
+#endif
