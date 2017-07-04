@@ -33,7 +33,7 @@
 
 namespace RapidOpenVX
 {
-  // This object is movable so it can be thought of as behaving in the same was as a unique_ptr and is compatible with std containers
+  //! This object is movable so it can be thought of as behaving in the same was as a unique_ptr and is compatible with std containers
   class ObjectArray
   {
     vx_object_array m_objectArray;
@@ -81,6 +81,7 @@ namespace RapidOpenVX
       Reset(objectArray);
     }
 
+#if VX_VERSION >= VX_VERSION_1_1
     //! @brief Create the requested resource
     //! @note  Function: vxCreateObjectArray
     ObjectArray(const vx_context context, const vx_reference exemplar, const vx_size count)
@@ -88,6 +89,7 @@ namespace RapidOpenVX
     {
       Reset(context, exemplar, count);
     }
+#endif
 
     ~ObjectArray()
     {
@@ -124,6 +126,7 @@ namespace RapidOpenVX
       m_objectArray = objectArray;
     }
 
+#if VX_VERSION >= VX_VERSION_1_1
     //! @brief Destroys any owned resources and then creates the requested one
     //! @note  Function: vxCreateObjectArray
     void Reset(const vx_context context, const vx_reference exemplar, const vx_size count)
@@ -143,6 +146,7 @@ namespace RapidOpenVX
       // Everything is ready, so assign the members
       m_objectArray = objectArray;
     }
+#endif
 
     //! @brief Get the associated resource handle
     vx_object_array Get() const

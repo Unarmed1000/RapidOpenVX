@@ -32,7 +32,7 @@
 
 namespace RapidOpenVX
 {
-  // This object is movable so it can be thought of as behaving in the same was as a unique_ptr and is compatible with std containers
+  //! This object is movable so it can be thought of as behaving in the same was as a unique_ptr and is compatible with std containers
   class LUT
   {
     vx_lut m_lut;
